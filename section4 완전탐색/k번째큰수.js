@@ -10,7 +10,7 @@ function solution(n, k, card){
   };
   const set = new Set(sumArr);
   const newSumArr = [...set];
-  answer = newSumArr.sort((a,b) => b-a)[2];
+  answer = newSumArr.sort((a,b) => b-a)[k-1];
   return answer;
 }
 
