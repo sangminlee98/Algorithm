@@ -1,7 +1,7 @@
 function solution(arr1, arr2){
   let answer=[];
-  answer.push(...arr1);
-  answer.push(...arr2);
+  answer.push(arr1);
+  answer.push(arr2);
   answer.sort();
   return answer;
 }
