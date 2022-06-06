@@ -1,8 +1,8 @@
 function solution(arr){
   let answer=arr;
   for(let i=0; i<arr.length-1; i++) {
-    let min = Number.MAX_SAFE_INTEGER;
-    let index;
+    let min = arr[i];
+    let index = i;
     for(let j=i+1; j<arr.length; j++) {
       if(min>arr[j]) {
         min = arr[j];
