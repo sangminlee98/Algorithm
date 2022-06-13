@@ -7,6 +7,7 @@ function solution(m, arr){
       dy[i] = Math.max(dy[i], dy[i-x[1]] + x[0]);
     }
   }
+  console.log(dy);
   answer = dy[m];
   return answer;
 }

@@ -10,5 +10,4 @@ function solution(n){
   answer = dy[7];
   return answer;
 }
-
 console.log(solution(7));
