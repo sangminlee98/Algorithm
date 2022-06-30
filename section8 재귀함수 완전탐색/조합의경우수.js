@@ -4,11 +4,11 @@ function solution(n, r){
     if(ch[F][B]>0) {
       return ch[F][B];
     }
-    if(F===B) {
+    if(F===B || B===0) {
       ch[F][B] = 1;
       return 1;
     }
-    else if(B===1) {
+    else if(B===1 || F-B===1) {
       ch[F][B] = F;
       return F;
     }
