@@ -12,5 +12,4 @@ function solution(s, e){
   }
   BFS(s);
 }
-
-solution(8, 3);
+solution(5, 14);
