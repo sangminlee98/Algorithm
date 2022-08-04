@@ -1,4 +1,15 @@
-10
-6 3 2 10 10 10 -10 -10 7 3
-8
-10 9 -5 2 3 4 5 -10
+14
+push 1
+push 2
+top
+size
+empty
+pop
+pop
+pop
+size
+empty
+pop
+push 3
+empty
+top
