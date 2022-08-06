@@ -42,7 +42,13 @@ class Dequeue {
       answer.push(-1);
     } else {
       const value = this.head.value;
-      this.head = this.head.next;
+      if (this.head.next === null) {
+        this.head = null;
+        this.rear = null;
+      } else {
+        this.head = this.head.next;
+        this.head.prev = null;
+      }
       this._size--;
       answer.push(value);
     }
@@ -52,7 +58,13 @@ class Dequeue {
       answer.push(-1);
     } else {
       const value = this.rear.value;
-      this.rear = this.rear.prev;
+      if (this.rear.prev === null) {
+        this.head = null;
+        this.rear = null;
+      } else {
+        this.rear = this.rear.prev;
+        this.rear.next = null;
+      }
       this._size--;
       answer.push(value);
     }
