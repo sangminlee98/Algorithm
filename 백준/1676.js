@@ -1,14 +1,17 @@
 let fs = require("fs");
-let input = +fs.readFileSync("/dev/stdin").toString().trim();
-let num = 1;
+let input = +fs.readFileSync("input.txt").toString().trim();
+let arr = [];
 while (input > 0) {
-  num *= input;
+  arr.push(input);
   input--;
 }
-let arr = num.toString().split("");
+
 let count = 0;
-for (let i = arr.length - 1; i >= 0; i--) {
-  if (arr[i] === "0") count++;
-  else break;
-}
+arr.map((num) => {
+  let a = num;
+  while (a % 5 === 0) {
+    a /= 5;
+    count++;
+  }
+});
 console.log(count);
