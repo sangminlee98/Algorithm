@@ -11,77 +11,76 @@ class MinHeap {
   constructor() {
     this.node = [];
   }
-  enqueue(data) {
-    this.node.push(data);
+  enqueue(num) {
+    this.node.push(num);
     this.bubbleUp();
   }
   bubbleUp(index = this.node.length - 1) {
-    if (index < 1) return;
-    const parentNodeIndex = Math.floor((index - 1) / 2);
-    if (this.node[parentNodeIndex] > this.node[index]) {
-      let tmp = this.node[index];
-      this.node[index] = this.node[parentNodeIndex];
-      this.node[parentNodeIndex] = tmp;
-      index = parentNodeIndex;
-      this.bubbleUp(index);
-    } else return;
-  }
-  extract() {
-    const min = this.node[0];
-    if (this.node.length === 1) {
-      this.node.pop();
-      return min;
-    } else {
-      this.node[0] = this.node.pop();
-      this.sinkDown();
-      return min;
+    const parentIndex = Math.floor((index - 1) / 2);
+    if (this.node[index] < this.node[parentIndex]) {
+      const t = this.node[index];
+      this.node[index] = this.node[parentIndex];
+      this.node[parentIndex] = t;
+      this.bubbleUp(parentIndex);
     }
   }
-  sinkDown(index = 0) {
+  extract() {
+    const value = this.node[0];
+    if (this.node.length === 0) console.log("error");
+    if (this.node.length === 1) {
+      this.node.pop();
+      return value;
+    } else {
+      this.node[0] = this.node.pop();
+      this.bubbleDown();
+      return value;
+    }
+  }
+  bubbleDown(index = 0) {
     const leftChildIndex = index * 2 + 1;
     const rightChildIndex = index * 2 + 2;
     let minimum = index;
     if (!this.node[leftChildIndex] && !this.node[rightChildIndex]) return;
     if (!this.node[rightChildIndex]) {
-      if (this.node[leftChildIndex] < this.node[minimum]) {
+      if (this.node[minimum] > this.node[leftChildIndex]) {
         minimum = leftChildIndex;
       }
     }
-    if (this.node[leftChildIndex] > this.node[rightChildIndex]) {
+    if (this.node[leftChildIndex] < this.node[rightChildIndex]) {
       if (
-        rightChildIndex <= this.node.length &&
-        this.node[rightChildIndex] < this.node[minimum]
+        leftChildIndex <= this.node.length &&
+        this.node[minimum] > this.node[leftChildIndex]
       ) {
-        minimum = rightChildIndex;
+        minimum = leftChildIndex;
       }
     } else {
       if (
-        leftChildIndex <= this.node.length &&
-        this.node[leftChildIndex] < this.node[minimum]
+        rightChildIndex <= this.node.length &&
+        this.node[minimum] > this.node[rightChildIndex]
       ) {
-        minimum = leftChildIndex;
+        minimum = rightChildIndex;
       }
     }
     if (minimum !== index) {
-      const t = this.node[minimum];
-      this.node[minimum] = this.node[index];
-      this.node[index] = t;
-      this.sinkDown(minimum);
+      const t = this.node[index];
+      this.node[index] = this.node[minimum];
+      this.node[minimum] = t;
+      this.bubbleDown(minimum);
     }
   }
 }
 
 const heap = new MinHeap();
-let answer = "";
-num.forEach((item) => {
-  if (item !== 0) {
-    heap.enqueue(item);
-  } else {
+let answer = [];
+for (const a of num) {
+  if (a === 0) {
     if (heap.node.length === 0) {
-      answer += "0\n";
+      answer.push(0);
     } else {
-      answer += `${heap.extract()}\n`;
+      answer.push(heap.extract());
     }
+  } else {
+    heap.enqueue(a);
   }
-});
-console.log(answer.trim());
+}
+console.log(answer.join("\n"));
