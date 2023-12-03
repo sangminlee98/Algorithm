@@ -8,7 +8,7 @@
 
 <p>You are given an integer array <code>nums</code>. Let <code>product</code> be the product of all values in the array <code>nums</code>.</p>
 
-<p>Return <code>signFunc(product)</code>.</p>
+<p>Return <code>signFunc(product)</code></p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
