@@ -11,7 +11,6 @@ var canVisitAllRooms = function(rooms) {
 };
 
 const dfs = (rooms, visitedRooms, roomNum, keys) => {
-  if(visitedRooms[roomNum]) return;
   visitedRooms[roomNum] = true;
 
   for(let i = 0; i < rooms[roomNum].length; i++) {
