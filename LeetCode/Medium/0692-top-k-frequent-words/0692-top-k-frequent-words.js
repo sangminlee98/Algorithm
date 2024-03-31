@@ -16,8 +16,8 @@ var topKFrequent = function(words, k) {
 
   const mapArray = [...map];
   mapArray.sort((a,b) => {
-    if(a[1] === b[1]) return b[0] < a[0] ? 1 : -1;
-    return a[1] < b[1] ? 1 : -1;
+	  if(a[1] === b[1]) return b[0] < a[0] ? 1 : -1;
+	  return b[1] - a[1];
   })
   
   for(let i = 0; i < k; i++) {
