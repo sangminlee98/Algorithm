@@ -24,9 +24,9 @@ var pathSum = function(root, targetSum) {
   function dfs(node) {
     if(!node) return;
 
-    node.left && dfs(node.left);
+    dfs(node.left);
     helper(node, 0);
-    node.right && dfs(node.right);
+    dfs(node.right);
   }
 
   dfs(root);
