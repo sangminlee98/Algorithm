@@ -1,22 +1,18 @@
 function solution(N, stages) {
-    const failureRateMap = new Map();
-    const userMap = new Map();
-    
-    for(let i = 1; i <= N; i++) {
-        const challenger = stages.filter(stage => i <= stage).length;
-        userMap.set(i, challenger)
-    }
-    
-    for(let i = 1; i <= N; i++) {
-        const stageChallenger = stages.filter(stage => i === stage).length;
-        failureRateMap.set(i, stageChallenger / userMap.get(i));
-    }
-    
-    return Array.from(failureRateMap).sort((a,b) => {
-        if(b[1] !== a[1]) {
-            return b[1] - a[1];
-        } else {
-            return a[0] - b[0];
+    const map = new Map();
+    for(let i = 0; i < N; i++) {
+        let total = 0;
+        let noClear = 0;
+        for(let j = 0; j < stages.length; j++) {
+            if(stages[j] >= i+1) total++;
+            if(stages[j] === i+1) noClear++;
         }
-    }).map(item => item[0]);
+        map.set(i+1, noClear / total)
+    }
+    const newMap = new Map([...map].sort((a,b) => b[1] - a[1]));
+    const answer = [];
+    for(const stage of newMap.keys()) {
+        answer.push(stage);
+    } 
+    return answer;
 }
