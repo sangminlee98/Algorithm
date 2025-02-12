@@ -1,19 +1,20 @@
 function solution(progresses, speeds) {
+    const restDay = progresses.map((progress, i) => Math.ceil((100 - progress)/speeds[i]));
+    
     const answer = [];
-    let idx = 0;
     let cnt = 0;
+    let maxDay = restDay[0];
     
-    while(progresses.length > idx) {
-        cnt = 0;
-        for(let i = 0; i < progresses.length; i++) {
-            progresses[i] += speeds[i];
-        };
-        while(progresses[idx] >= 100) {
+    for(const day of restDay) {
+        if(day <= maxDay) {
             cnt++;
-            idx++;
+        } else {
+            answer.push(cnt);
+            cnt = 1;
+            maxDay = day;
         }
-        if(cnt > 0) answer.push(cnt);
-    }
+    };
     
-    return answer
+    answer.push(cnt);
+    return answer;
 }
